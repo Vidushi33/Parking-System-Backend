@@ -90,6 +90,10 @@ app.post('/exit',async(req,res)=>{
     let max=Math.max(...bookedSlots)
     availableSlots=range(max+1,60)
     const exitTime=moment().format('MMMM Do YYYY, h:mm:ss a');
+    if (moment().utcOffset() == -0){
+        // for server
+        tms += 28800000
+    }
     const exitTimeValue= moment()
     const {vehicleNo}=req.body
     const updateExitTime=await entryModel.findOneAndUpdate({vehicleNo:vehicleNo,isParked:true},{exitTime:exitTime,isParked:false,exitTimeValue:exitTimeValue},{new:true})
