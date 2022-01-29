@@ -45,7 +45,7 @@ app.post("/entry",async(req,res)=>{
 
     console.log(req.body)
     const {name,mail,contactNo,vehicleNo,category,remarks}=req.body
-    const entryTime=moment().format('MMMM Do YYYY, h:mm:ss a');
+    const entryTime=moment().format('MMMM Do YYYY, h:mm:ss ');
     const entryTimeValue=moment()
     let isParked=true;
     let slot;
@@ -89,7 +89,7 @@ app.post('/exit',async(req,res)=>{
     bookedSlots=await getBookedSlots()
     let max=Math.max(...bookedSlots)
     availableSlots=range(max+1,60)
-    const exitTime=moment().format('MMMM Do YYYY, h:mm:ss a');
+    const exitTime=moment().format('MMMM Do YYYY, h:mm:ss ');
     const exitTimeValue= moment()
     const {vehicleNo}=req.body
     const updateExitTime=await entryModel.findOneAndUpdate({vehicleNo:vehicleNo,isParked:true},{exitTime:exitTime,isParked:false,exitTimeValue:exitTimeValue},{new:true})
