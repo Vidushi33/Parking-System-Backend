@@ -45,7 +45,11 @@ app.post("/entry",async(req,res)=>{
 
     console.log(req.body)
     const {name,mail,contactNo,vehicleNo,category,remarks}=req.body
-    const entryTime=moment().format('MMMM Do YYYY, h:mm:ss a');
+    // const entryTime=moment().format('MMMM Do YYYY, h:mm:ss a');
+    if (moment().utcOffset() == -0){
+        // for server
+        tms += 28800000
+    }
     const entryTimeValue=moment()
     let isParked=true;
     let slot;
