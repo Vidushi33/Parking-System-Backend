@@ -126,7 +126,9 @@ app.post('/exit',async(req,res)=>{
     return res.json({availSlots:availableSlots,slot:allotedSlot,charge:charge,notFound:false,entryTime:updateExitTime.entryTime,exitTime:updateExitTime.exitTime,duration:duration.asMinutes().toFixed(2)})
 }
 else{
-    return res.json({notFound:true,message:"Vehicle not found in the parking"})
+    return res.json({
+        notFound:true,
+        message:"Vehicle not found in the parking"})
 }
 })
 
